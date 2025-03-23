@@ -109,4 +109,35 @@
             </build>
         </profile>
     </profiles>
+    <build>
+    <plugins>
+        <!-- CycloneDX Maven Plugin for SBOM Generation -->
+        <plugin>
+            <groupId>org.cyclonedx</groupId>
+            <artifactId>cyclonedx-maven-plugin</artifactId>
+            <version>2.7.7</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>makeBom</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <!-- OWASP Dependency Check Plugin for Vulnerability Scanning -->
+        <plugin>
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <version>6.5.0</version>  <!-- Use the latest version -->
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+   </build>
+
 </project>
