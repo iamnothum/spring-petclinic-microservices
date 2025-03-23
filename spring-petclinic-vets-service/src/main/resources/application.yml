@@ -1,16 +1,23 @@
 spring:
   application:
     name: vets-service
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
-  cache:
-    cache-names: vets
-  profiles:
-    active: production
 
----
-spring:
-  config:
-    activate:
-      on-profile: docker
-    import: configserver:http://config-server:8888
+  datasource:
+    url: ${DATABASE_URL:jdbc:mysql://mysql:3306/petclinic}
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  cache:
+    cache-names: vets  # ✅ Keeps caching enabled for vets-service
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:production}  # ✅ Allows overriding profile via environment variable
+
+server:
+  port: 8080

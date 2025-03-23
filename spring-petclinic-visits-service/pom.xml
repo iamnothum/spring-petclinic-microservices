@@ -13,12 +13,21 @@
         <artifactId>spring-petclinic-microservices</artifactId>
         <version>3.4.1</version>
     </parent>
+        <properties>
+    <!-- Ensure your project uses Java 17 -->
+    <java.version>17</java.version>  <!-- Add this to specify the Java version -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
 
-    <properties>
+    <docker.image.exposed.port>8081</docker.image.exposed.port>
+    <docker.image.dockerfile.dir>${basedir}/../docker</docker.image.dockerfile.dir>
+     </properties>
+
+ <!--    <properties>
         <docker.exposed.port>8081</docker.exposed.port>
         <docker.image.dockerfile.dir>${basedir}/../docker</docker.image.dockerfile.dir>
     </properties>
-
+ -->
     <dependencies>
         <!-- Spring Boot -->
         <dependency>
@@ -40,14 +49,6 @@
         </dependency>
 
         <!-- Spring Cloud -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
 
         <!-- Third parties -->
         <dependency>
@@ -72,27 +73,7 @@
             <groupId>de.codecentric</groupId>
             <artifactId>chaos-monkey-spring-boot</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-exporter-zipkin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-observation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-tracing-bridge-brave</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.zipkin.reporter2</groupId>
-            <artifactId>zipkin-reporter-brave</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>net.ttddyy.observation</groupId>
-            <artifactId>datasource-micrometer-spring-boot</artifactId>
-            <version>1.0.2</version>
-        </dependency>
+  
 
         <!-- Testing -->
         <dependency>
